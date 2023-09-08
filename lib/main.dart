@@ -6,6 +6,7 @@ void main(List<String> args) {
   runApp(const ClickingGameApp());
 }
 
+/// A game that entices you to click forever
 class ClickingGameApp extends StatelessWidget {
   const ClickingGameApp({super.key});
 
