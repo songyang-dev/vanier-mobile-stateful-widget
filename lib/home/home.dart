@@ -48,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+          // show the score when reset properly
           if (_score > 0) Score(score: _score),
         ],
       ),
@@ -55,6 +56,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
+/// This is a floating widget that should only appear when the [score] is greater
+/// than zero.
 class Score extends StatelessWidget {
   const Score({
     super.key,
