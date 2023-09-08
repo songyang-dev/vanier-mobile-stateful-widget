@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 /// Changes the counter number according to user input
 class _HomeScreenState extends State<HomeScreen> {
   int _counter = 0;
+  int _score = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,25 +24,60 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () => setState(() => _counter++)),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MotivationalText(count: _counter),
-            Text(
-              "$_counter",
-              style: Theme.of(context).textTheme.headlineSmall,
+      body: Stack(
+        children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                MotivationalText(count: _counter),
+                Text(
+                  "$_counter",
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => setState(
+                    () {
+                      if (_counter >= 20) _score++;
+                      _counter = 0;
+                    },
+                  ),
+                  icon: const Icon(Icons.restore),
+                  label: const Text("Reset"),
+                ),
+              ],
             ),
-            ElevatedButton.icon(
-              onPressed: () => setState(
-                () {
-                  _counter = 0;
-                },
-              ),
-              icon: const Icon(Icons.restore),
-              label: const Text("Reset"),
+          ),
+          if (_score > 0) Score(score: _score),
+        ],
+      ),
+    );
+  }
+}
+
+class Score extends StatelessWidget {
+  const Score({
+    super.key,
+    required this.score,
+  });
+
+  final int score;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      right: 0,
+      top: 0,
+      child: Card(
+        elevation: 4,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Text(
+              "Score: $score",
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
-          ],
+          ),
         ),
       ),
     );
