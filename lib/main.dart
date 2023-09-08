@@ -1,30 +1,18 @@
 import 'package:flutter/material.dart';
 
+import 'home/home.dart';
+
 void main(List<String> args) {
-  runApp(const ClickingGame());
+  runApp(const ClickingGameApp());
 }
 
-class ClickingGame extends StatelessWidget {
-  const ClickingGame({super.key});
+class ClickingGameApp extends StatelessWidget {
+  const ClickingGameApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Clicking Game"),
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
-          onPressed: () {},
-        ),
-        body: Center(
-          child: Text(
-            "You have clicked this many times:",
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
-        ),
-      ),
+    return const MaterialApp(
+      home: HomeScreen(),
     );
   }
 }
